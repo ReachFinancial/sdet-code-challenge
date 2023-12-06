@@ -77,12 +77,32 @@ test.describe('Test Suite for todo mvc app', () => {
     // Mark specific todo item as complete
     await todoAppHomePage.clickOnCompleteCheckBoxOfTodoItem(TODO_ITEMS[0]);
 
+    // Verify green checkmark is displayed and todo is struck through (Visual QA)
+    await expect(todoAppHomePage.todoList.first()).toBeVisible()
+    await expect(todoAppHomePage.todoList.first()).toHaveScreenshot('greenCheckAndStrikeThrough.png');
+
     // Verify todo item is completed and checked
     await expect(todoAppHomePage.firstCompletedCheckbox).toBeChecked();
     await expect(todoAppHomePage.todoCounterText).toHaveText('0 items left');
     await checkNumberOfTodosInLocalStorage(page, 1);
+  });
 
-    // Verify green checkmark is displayed and todo is struck through (Visual QA)
-    await expect(todoAppHomePage.todoList.first()).toHaveScreenshot('greenCheckAndStrikeThrough.png');
+  test('TC-5 Should only display Active (Not Completed) todos in the Active list', async ({ page }) => {
+    const todoAppHomePage = new TodoAppHomePage(page);
+
+    // Create 2 todos items
+    await todoAppHomePage.addNewTodoItem(TODO_ITEMS[1]);
+    await todoAppHomePage.addNewTodoItem(TODO_ITEMS[0]);
+    await expect(todoAppHomePage.todoList).toHaveCount(2);
+
+    // Mark specific todo item as complete and click on the active link
+    await todoAppHomePage.clickOnCompleteCheckBoxOfTodoItem(TODO_ITEMS[1]);
+    await todoAppHomePage.activeLink.click();
+
+    // Verify active list only displays Active todos
+    await expect(todoAppHomePage.todoCounterText).toHaveText('1 item left');
+    await expect(todoAppHomePage.todoList).toHaveCount(1);
+    await expect(todoAppHomePage.todoList.first()).toContainText(TODO_ITEMS[0])
+    await checkNumberOfCompletedTodosInLocalStorage(page, 1);
   });
 });

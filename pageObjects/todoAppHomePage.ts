@@ -28,6 +28,10 @@ export class TodoAppHomePage {
     return this.page.locator('button.destroy');
   };
 
+  get activeLink() {
+    return this.page.getByRole('link', { name: 'Active' });
+  };
+
   // Page actions 
   async addNewTodoItem(todo: string) {
     await this.newTodoInput.fill(todo);
