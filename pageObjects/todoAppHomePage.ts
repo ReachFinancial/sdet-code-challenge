@@ -20,6 +20,10 @@ export class TodoAppHomePage {
     return this.page.locator('ul.todo-list li');
   };
 
+  get firstCompletedCheckbox() {
+    return this.page.locator('ul.todo-list li.completed input').first();
+  };
+
   get redButtonX() {
     return this.page.locator('button.destroy');
   };
@@ -38,6 +42,10 @@ export class TodoAppHomePage {
 
   async clickOnRedButtonX() {
     await this.page.mouse.move(1013, 218); // since element is hidden, move the mouse to it 
-    await this.redButtonX.click()
+    await this.redButtonX.click();
   }
+
+  async clickOnCompleteCheckBoxOfTodoItem(todoItem: string) {
+    await this.page.getByRole('listitem').filter({ hasText: todoItem }).getByRole('checkbox').check();
+  };
 };

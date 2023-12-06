@@ -66,4 +66,23 @@ test.describe('Test Suite for todo mvc app', () => {
     await expect(todoAppHomePage.todoList).toHaveCount(0);
     await checkNumberOfTodosInLocalStorage(page, 0);
   });
+
+  test('TC-4 Should mark todo item with a green check mark and struck through when user marks it as complete', async ({ page }) => {
+    const todoAppHomePage = new TodoAppHomePage(page);
+
+    // Create first todo item
+    await todoAppHomePage.addNewTodoItem(TODO_ITEMS[0]);
+    await expect(todoAppHomePage.todoList).toHaveCount(1);
+
+    // Mark specific todo item as complete
+    await todoAppHomePage.clickOnCompleteCheckBoxOfTodoItem(TODO_ITEMS[0]);
+
+    // Verify todo item is completed and checked
+    await expect(todoAppHomePage.firstCompletedCheckbox).toBeChecked();
+    await expect(todoAppHomePage.todoCounterText).toHaveText('0 items left');
+    await checkNumberOfTodosInLocalStorage(page, 1);
+
+    // Verify green checkmark is displayed and todo is struck through (Visual QA)
+    await expect(todoAppHomePage.todoList.first()).toHaveScreenshot('greenCheckAndStrikeThrough.png');
+  });
 });
