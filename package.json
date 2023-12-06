@@ -4,7 +4,8 @@
   "description": "Reach Financial code challenge for members looking to join the QA team",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test --project=chromium"
+    "test": "npx playwright test --reporter=list",
+    "test:chrome": "npm run test -- --project=chromium"
   },
   "author": "",
   "license": "ISC",

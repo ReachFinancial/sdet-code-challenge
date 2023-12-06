@@ -12,7 +12,7 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 20 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -35,7 +35,7 @@ export default defineConfig({
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://localhost:3000',
+    baseURL: 'https://todomvc.com',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
