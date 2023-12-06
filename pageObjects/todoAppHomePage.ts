@@ -32,6 +32,18 @@ export class TodoAppHomePage {
     return this.page.getByRole('link', { name: 'Active' });
   };
 
+  get clearCompletedLink() {
+    return this.page.getByRole('button', { name: 'Clear completed' });
+  };
+
+  get completedLink() {
+    return this.page.getByRole('link', { name: 'Completed' });
+  };
+
+  get toggleAllLabel() {
+    return this.page.locator('.main label[for="toggle-all"]');
+  };
+
   // Page actions 
   async addNewTodoItem(todo: string) {
     await this.newTodoInput.fill(todo);
@@ -52,4 +64,9 @@ export class TodoAppHomePage {
   async clickOnCompleteCheckBoxOfTodoItem(todoItem: string) {
     await this.page.getByRole('listitem').filter({ hasText: todoItem }).getByRole('checkbox').check();
   };
+
+  async clickOnToggleAllLable() {
+    await this.toggleAllLabel.hover();
+    await this.toggleAllLabel.click({ force: true });
+  }
 };

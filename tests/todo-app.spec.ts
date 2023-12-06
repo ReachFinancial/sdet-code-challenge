@@ -105,4 +105,32 @@ test.describe('Test Suite for todo mvc app', () => {
     await expect(todoAppHomePage.todoList.first()).toContainText(TODO_ITEMS[0])
     await checkNumberOfCompletedTodosInLocalStorage(page, 1);
   });
+
+  test('TC-6 Should remove todo item from list when clicking on (Clear Completed) and move it to (Completed list)', async ({ page }) => {
+    const todoAppHomePage = new TodoAppHomePage(page);
+
+    // Create 2 todos items and mark the second as completed
+    await todoAppHomePage.addNewTodoItem(TODO_ITEMS[0]);
+    await todoAppHomePage.addNewTodoItem(TODO_ITEMS[1]);
+    await expect(todoAppHomePage.todoList).toHaveCount(2);
+    await todoAppHomePage.clickOnCompleteCheckBoxOfTodoItem(TODO_ITEMS[0]);
+
+    // Click on the Clear Completed link
+    await expect(todoAppHomePage.clearCompletedLink).toBeVisible()
+    await todoAppHomePage.clearCompletedLink.click()
+
+    // Verify the completed todo item is removed from my todo list
+    await expect(todoAppHomePage.todoCounterText).toHaveText('1 item left');
+    await expect(todoAppHomePage.todoList).toHaveCount(1);
+    await expect(todoAppHomePage.todoList).toHaveText([TODO_ITEMS[1]]);
+
+    // Click on completed list and then on the toggle all label
+    await todoAppHomePage.completedLink.click();
+    await todoAppHomePage.clickOnToggleAllLable();
+
+    // Verify todo item is on the completed list
+    await expect(todoAppHomePage.todoCounterText).toHaveText('0 items left');
+    await todoAppHomePage.clickOnCompleteCheckBoxOfTodoItem(TODO_ITEMS[1]);
+    await checkNumberOfCompletedTodosInLocalStorage(page, 1);
+  });
 });
