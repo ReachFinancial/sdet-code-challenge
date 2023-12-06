@@ -1,9 +1,9 @@
 import { test, expect, type Page } from '@playwright/test';
-import { checkNumberOfCompletedTodosInLocalStorage, checkNumberOfTodosInLocalStorage, checkTodosInLocalStorage } from '../src/todo-app'
+import { checkNumberOfCompletedTodosInLocalStorage, checkNumberOfTodosInLocalStorage, checkTodosInLocalStorage } from '../src/todo-app';
 import { TodoAppHomePage } from '../pageObjects/todoAppHomePage';
 
 test.beforeEach(async ({ page }) => {
-    // Visit todo Homepage
+    // Visit todo app Homepage
     await new TodoAppHomePage(page).visit();
 });
 
@@ -45,10 +45,25 @@ test.describe('Test Suite for todo mvc app', () => {
     await todoAppHomePage.addNewTodoItem(TODO_ITEMS[0]);
 
     // Edit the todo item
-    await todoAppHomePage.editFirstTodoItem(' updated')
+    await todoAppHomePage.editFirstTodoItem(' updated');
 
     // Verify the todo update is updated with the new changes
-    await expect(todoAppHomePage.todoList.first()).toContainText('updated')
+    await expect(todoAppHomePage.todoList.first()).toContainText('updated');
     await checkTodosInLocalStorage(page, TODO_ITEMS[0] + ' updated');
+  });
+
+  test('TC-3 Should delete todo item when using the red X', async ({ page }) => {
+    const todoAppHomePage = new TodoAppHomePage(page);
+
+    // Create first todo item
+    await todoAppHomePage.addNewTodoItem(TODO_ITEMS[0]);
+    await expect(todoAppHomePage.todoList).toHaveCount(1);
+
+    // Delete todo item by using the red X
+    await todoAppHomePage.clickOnRedButtonX();
+
+    // Verify todo list is empty
+    await expect(todoAppHomePage.todoList).toHaveCount(0);
+    await checkNumberOfTodosInLocalStorage(page, 0);
   });
 });

@@ -20,6 +20,10 @@ export class TodoAppHomePage {
     return this.page.locator('ul.todo-list li');
   };
 
+  get redButtonX() {
+    return this.page.locator('button.destroy');
+  };
+
   // Page actions 
   async addNewTodoItem(todo: string) {
     await this.newTodoInput.fill(todo);
@@ -31,4 +35,9 @@ export class TodoAppHomePage {
     await this.todoList.first().first().type(updateText);
     await this.todoList.first().first().press('Enter');
   };
+
+  async clickOnRedButtonX() {
+    await this.page.mouse.move(1013, 218); // since element is hidden, move the mouse to it 
+    await this.redButtonX.click()
+  }
 };
