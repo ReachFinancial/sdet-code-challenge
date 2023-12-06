@@ -37,4 +37,18 @@ test.describe('Test Suite for todo mvc app', () => {
     await checkTodosInLocalStorage(page, TODO_ITEMS[0]);
     await checkTodosInLocalStorage(page, TODO_ITEMS[1]);
   });
+
+  test('TC-2 Should update todo item when user edits it', async ({ page }) => {
+    const todoAppHomePage = new TodoAppHomePage(page);
+
+    // Create first todo item
+    await todoAppHomePage.addNewTodoItem(TODO_ITEMS[0]);
+
+    // Edit the todo item
+    await todoAppHomePage.editFirstTodoItem(' updated')
+
+    // Verify the todo update is updated with the new changes
+    await expect(todoAppHomePage.todoList.first()).toContainText('updated')
+    await checkTodosInLocalStorage(page, TODO_ITEMS[0] + ' updated');
+  });
 });

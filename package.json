@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test --reporter=list",
-    "test:chrome": "npm run test -- --project=chromium"
+    "test:chrome": "npm run test -- --project=chromium",
+    "test:firefox": "npm run test -- --project=firefox"
   },
   "author": "",
   "license": "ISC",

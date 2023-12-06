@@ -25,4 +25,10 @@ export class TodoAppHomePage {
     await this.newTodoInput.fill(todo);
     await this.newTodoInput.press('Enter');
   };
+
+  async editFirstTodoItem(updateText: string) {
+    await this.todoList.first().dblclick();
+    await this.todoList.first().first().type(updateText);
+    await this.todoList.first().first().press('Enter');
+  };
 };
