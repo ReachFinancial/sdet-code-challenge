@@ -24,6 +24,20 @@ export class TodoPage {
         }
     }
 
+    async editTodoItem(newText: string) {
+        const firstTodoItem = this.todoList.first()
+        const firstLabel = firstTodoItem.locator('[data-testid="todo-item-label"]')
+        await firstLabel.dblclick()
+        const editInput = firstTodoItem.locator('input[type="text"]:visible')
+        if (await editInput.isVisible()) {
+            await editInput.fill(newText)
+            await editInput.press('Enter')
+            return firstLabel  
+        } else {
+            throw new Error('Input field did not appear upon label double-click')
+        }
+    }
+
     async countTodos() {
         return this.todoList.count()
     }

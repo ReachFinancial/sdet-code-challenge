@@ -23,4 +23,11 @@ test.describe('Create New Todo', () => {
     console.log("count")
     await expect(todoPage.todoList.nth(count - 1)).toHaveText(TODO_ITEMS[TODO_ITEMS.length-1])
   });
+
+  test('should be able to edit a todo item', async({page}) => {
+    const newText = 'updated task - complete code challenge for reach'
+
+    const updatedTodo = await todoPage.editTodoItem(newText)
+    await expect(updatedTodo).toHaveText(newText)
+  })
 });
