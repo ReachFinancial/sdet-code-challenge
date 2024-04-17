@@ -38,6 +38,13 @@ export class TodoPage {
         }
     }
 
+    async deleteTodoItem(index: number) {
+        const itemToDelete = this.todoList.nth(index)
+        await itemToDelete.hover()
+        const destroyButton = itemToDelete.locator('.destroy')
+        await destroyButton.click({ force: true })
+    }
+
     async countTodos() {
         return this.todoList.count()
     }

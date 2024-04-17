@@ -30,4 +30,12 @@ test.describe('Create New Todo', () => {
     const updatedTodo = await todoPage.editTodoItem(newText)
     await expect(updatedTodo).toHaveText(newText)
   })
+
+  test('should delete a todo item from the list', async ({ page }) => {
+    await todoPage.deleteTodoItem(0) 
+    const count = await todoPage.countTodos()
+    expect(count).toBe(1) 
+  })
+
+
 });
