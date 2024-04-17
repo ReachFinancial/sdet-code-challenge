@@ -45,6 +45,12 @@ export class TodoPage {
         await destroyButton.click({ force: true })
     }
 
+    async toggleTodoCompletion(index: number) {
+        const toggleButton = this.todoList.nth(index).locator('[data-testid="todo-item-toggle"]')
+        await toggleButton.click()
+        return this.todoList.nth(index)
+    }
+
     async countTodos() {
         return this.todoList.count()
     }

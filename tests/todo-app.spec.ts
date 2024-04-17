@@ -20,7 +20,6 @@ test.describe('Create New Todo', () => {
 
   test('should be able to create new items on the page', async ({ page }) => {
     const count = await todoPage.countTodos()
-    console.log("count")
     await expect(todoPage.todoList.nth(count - 1)).toHaveText(TODO_ITEMS[TODO_ITEMS.length-1])
   });
 
@@ -37,5 +36,11 @@ test.describe('Create New Todo', () => {
     expect(count).toBe(1) 
   })
 
+  test('marking a todo item as completed shows with a green mark', async({page}) => {
+    const completedItem = await todoPage.toggleTodoCompletion(0)
+    await expect(completedItem).toHaveClass(/completed/)
+    const label = completedItem.locator('[data-testid="todo-item-label"]')
+    expect(label).toHaveCSS('text-decoration-line', 'line-through')
+  })
 
 });
