@@ -14,7 +14,13 @@ test.describe('Create New Todo', () => {
 
   test.beforeEach(async ({ page }) => {
     todoPage = new TodoPage(page)
+    
     await todoPage.goto()
+
+    expect(page.url()).toBe('https://todomvc.com/examples/react/dist/')
+    const title = await page.title()
+    expect(title).toBe('TodoMVC: React')
+
     await todoPage.createTodos(TODO_ITEMS)
   })
 
