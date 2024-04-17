@@ -43,4 +43,18 @@ test.describe('Create New Todo', () => {
     expect(label).toHaveCSS('text-decoration-line', 'line-through')
   })
 
+  test('should show only active items', async({page}) => {
+    await todoPage.toggleTodoCompletion(0)
+    await todoPage.clickFilter('Active')
+    const count = await todoPage.countTodos()
+    expect(count).toBe(1)
+  })
+
+  test('should remove completed items from the todo list', async({page}) => {
+    await todoPage.toggleTodoCompletion(0)
+    await todoPage.clearCompleted()
+    await todoPage.clickFilter('Completed')
+    const count = await todoPage.countTodos()
+    expect(count).toBe(0)
+  })
 });

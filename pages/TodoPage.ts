@@ -4,11 +4,13 @@ export class TodoPage {
     readonly page: Page
     readonly newTodoInput: Locator
     readonly todoList: Locator
+    readonly filters: Locator
 
     constructor(page: Page) {
         this.page = page
         this.newTodoInput = page.locator('[data-testid="text-input"]')
         this.todoList = page.locator('.todo-list li')
+        this.filters = page.locator('.filters li a')
     }
 
     async goto() {
@@ -49,6 +51,14 @@ export class TodoPage {
         const toggleButton = this.todoList.nth(index).locator('[data-testid="todo-item-toggle"]')
         await toggleButton.click()
         return this.todoList.nth(index)
+    }
+
+    async clickFilter(filterName: string) {
+        await this.filters.filter({hasText: filterName}).click()
+    }
+
+    async clearCompleted() {
+        await this.page.locator('.clear-completed').click()
     }
 
     async countTodos() {
