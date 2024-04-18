@@ -4,15 +4,17 @@
   "description": "Reach Financial code challenge for members looking to join the QA team",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test --project=chromium"
+    "test": "playwright test --project=chromium",
+    "test:ui": "playwright test --ui"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.31.2"
+    "@playwright/test": "^1.31.2",
+    "@types/node": "^20.12.7",
+    "playwright": "^1.43.1"
   },
   "dependencies": {
-    "eslint": "^8.35.0",
-    "playwright": "^1.31.2"
+    "eslint": "^8.35.0"
   }
 }
