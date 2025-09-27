@@ -1,0 +1,91 @@
+### Simple Loan API - Sample Requests
+### Use with VS Code REST Client extension or copy as curl commands
+
+@baseUrl = http://localhost:3000
+
+### Health Check
+GET {{baseUrl}}/health
+
+### Submit Valid Application
+POST {{baseUrl}}/applications
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "income": 50000,
+  "amount": 15000
+}
+
+### Submit Low Income Application (should be rejected)
+POST {{baseUrl}}/applications
+Content-Type: application/json
+
+{
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "email": "jane.smith@example.com",
+  "income": 25000,
+  "amount": 10000
+}
+
+### Submit Application with High Amount (test bug)
+POST {{baseUrl}}/applications
+Content-Type: application/json
+
+{
+  "firstName": "Rich",
+  "lastName": "Person",
+  "email": "rich@example.com",
+  "income": 28000,
+  "amount": 45000
+}
+
+### Submit Invalid Application
+POST {{baseUrl}}/applications
+Content-Type: application/json
+
+{
+  "firstName": "Bad",
+  "email": "not-an-email",
+  "income": -5000,
+  "amount": 0
+}
+
+### Boundary Test - Exact Min Income ($30k)
+POST {{baseUrl}}/applications
+Content-Type: application/json
+
+{
+  "firstName": "Boundary",
+  "lastName": "Test",
+  "email": "boundary@example.com",
+  "income": 30000,
+  "amount": 5000
+}
+
+### Get All Applications
+GET {{baseUrl}}/applications
+
+### Get Specific Application (use ID from POST response)
+GET {{baseUrl}}/applications/APP-001
+
+### Get Non-existent Application
+GET {{baseUrl}}/applications/APP-999
+
+### Update Application Status
+PUT {{baseUrl}}/applications/APP-001/status
+Content-Type: application/json
+
+{
+  "status": "funded"
+}
+
+### Invalid Status Update
+PUT {{baseUrl}}/applications/APP-001/status
+Content-Type: application/json
+
+{
+  "status": "invalid-status"
+}

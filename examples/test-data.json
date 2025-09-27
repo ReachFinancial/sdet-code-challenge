@@ -1,0 +1,74 @@
+{
+  "validApplication": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "income": 50000,
+    "amount": 15000
+  },
+
+  "lowIncomeApplication": {
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "email": "jane.smith@example.com",
+    "income": 25000,
+    "amount": 10000
+  },
+
+  "highAmountApplication": {
+    "firstName": "Rich",
+    "lastName": "Person",
+    "email": "rich@example.com",
+    "income": 28000,
+    "amount": 45000
+  },
+
+  "invalidApplication": {
+    "firstName": "Bad",
+    "email": "not-an-email",
+    "income": -5000,
+    "amount": 0
+  },
+
+  "boundaryTests": {
+    "exactMinIncome": {
+      "firstName": "Min",
+      "lastName": "Income",
+      "email": "min@example.com",
+      "income": 30000,
+      "amount": 5000
+    },
+
+    "belowMinIncome": {
+      "firstName": "Below",
+      "lastName": "Min",
+      "email": "below@example.com",
+      "income": 29999,
+      "amount": 5000
+    },
+
+    "minAmount": {
+      "firstName": "Min",
+      "lastName": "Amount",
+      "email": "minamount@example.com",
+      "income": 40000,
+      "amount": 1000
+    },
+
+    "maxAmount": {
+      "firstName": "Max",
+      "lastName": "Amount",
+      "email": "maxamount@example.com",
+      "income": 80000,
+      "amount": 50000
+    },
+
+    "overMaxAmount": {
+      "firstName": "Over",
+      "lastName": "Max",
+      "email": "overmax@example.com",
+      "income": 100000,
+      "amount": 60000
+    }
+  }
+}
