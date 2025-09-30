@@ -271,11 +271,7 @@ GET /health
 - **Business Logic**: Income thresholds, amount limits
 - **Error Handling**: Invalid requests, non-existent resources
 
-#### Choose ONE of the following:
-- **JavaScript/TypeScript**: Jest, Mocha, or Playwright
-- **Python**: pytest, unittest, or requests + unittest
-- **Java**: RestAssured + JUnit/TestNG
-- **Other**: Justify your choice in documentation
+#### Feel free to use whatever language, frameworks, and tools you're most comfortable with.
 
 ### 2. Find and Document Issues
 Identify any issues or defects in the API behavior. Document your findings in `TEST_RESULTS.md`:

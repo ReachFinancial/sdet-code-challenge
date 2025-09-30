@@ -45,3 +45,5 @@ Application should be approved based on business rules
 Application was rejected with reason "Income below minimum threshold"
 
 **Impact**: High - Valid customers are being incorrectly rejected
+
+## Assumptions & Questions
