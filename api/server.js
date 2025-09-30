@@ -12,8 +12,93 @@ app.use(express.json());
 let applications = [];
 let nextId = 1;
 
+// Seed data - some pre-existing applications for testing
+const seedApplications = () => {
+  applications = [
+    {
+      id: "APP-001",
+      firstName: "Alice",
+      lastName: "Johnson",
+      email: "alice.johnson@example.com",
+      income: 75000,
+      amount: 20000,
+      status: "approved",
+      decision: {
+        approved: true,
+        reason: "Income meets minimum requirements"
+      },
+      createdAt: new Date(Date.now() - 86400000).toISOString() // 1 day ago
+    },
+    {
+      id: "APP-002",
+      firstName: "Bob",
+      lastName: "Smith",
+      email: "bob.smith@example.com",
+      income: 28000,
+      amount: 15000,
+      status: "rejected",
+      decision: {
+        approved: false,
+        reason: "Income below minimum threshold"
+      },
+      createdAt: new Date(Date.now() - 43200000).toISOString() // 12 hours ago
+    },
+    {
+      id: "APP-003",
+      firstName: "Carol",
+      lastName: "Williams",
+      email: "carol.w@example.com",
+      income: 45000,
+      amount: 8000,
+      status: "funded",
+      decision: {
+        approved: true,
+        reason: "Income meets minimum requirements"
+      },
+      createdAt: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
+      updatedAt: new Date(Date.now() - 3600000).toISOString() // funded 1 hour ago
+    },
+    {
+      id: "APP-004",
+      firstName: "David",
+      lastName: "Brown",
+      email: "david.brown@example.com",
+      income: 60000,
+      amount: 25000,
+      status: "approved",
+      decision: {
+        approved: true,
+        reason: "Income meets minimum requirements"
+      },
+      createdAt: new Date(Date.now() - 7200000).toISOString() // 2 hours ago
+    },
+    {
+      id: "APP-005",
+      firstName: "Eve",
+      lastName: "Davis",
+      email: "eve.davis@example.com",
+      income: 30000,
+      amount: 5000,
+      status: "pending",
+      decision: {
+        approved: false,
+        reason: "Income below minimum threshold"
+      },
+      createdAt: new Date(Date.now() - 1800000).toISOString() // 30 minutes ago
+    }
+  ];
+  nextId = 6; // Start new IDs from APP-006
+};
+
+// Initialize with seed data
+seedApplications();
+
 // Helper functions
-const generateId = () => `APP-${String(nextId++).padStart(3, '0')}`;
+const generateId = () => {
+  const id = `APP-${String(nextId).padStart(3, '0')}`;
+  nextId++;
+  return id;
+};
 
 const validateApplication = (data) => {
   const errors = [];
@@ -37,7 +122,6 @@ const validateApplication = (data) => {
   if (!data.amount || typeof data.amount !== 'number' || data.amount <= 0) {
     errors.push('amount must be a positive number');
   }
-
 
   return errors;
 };
@@ -68,7 +152,10 @@ const processApplication = (data) => {
 
 // Health check
 app.get('/health', (req, res) => {
-  res.json({ status: 'healthy', timestamp: new Date().toISOString() });
+  res.json({
+    status: 'healthy',
+    timestamp: new Date().toISOString()
+  });
 });
 
 // Submit loan application
@@ -119,7 +206,7 @@ app.get('/applications', (req, res) => {
   res.json(applications);
 });
 
-// Update application status (admin endpoint)
+// Update application status
 app.put('/applications/:id/status', (req, res) => {
   const app = applications.find(a => a.id === req.params.id);
 
@@ -164,3 +251,5 @@ app.listen(PORT, () => {
   console.log(`   GET  /applications/:id`);
   console.log(`   PUT  /applications/:id/status`);
 });
+
+module.exports = app;
