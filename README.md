@@ -2,7 +2,7 @@
 
 ## 🎯 Overview
 
-You've been assigned to test a loan application API that's about to go into production. The API has passed initial developer testing, but needs comprehensive quality assurance from an SDET perspective. Your mission is to build a robust test suite, identify defects, and provide professional test documentation.
+Your assignment is to test a loan application API. Build a robust test suite, identify defects, and provide additional technical documentation where needed.
 
 ## 🚀 Getting Started
 
