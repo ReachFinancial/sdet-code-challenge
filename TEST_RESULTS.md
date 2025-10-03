@@ -2,12 +2,12 @@
 
 ## Test Execution
 
-### Prerequisites
+### Prerequisites (example)
 - Node.js version X.X.X
 - [Testing framework] version X.X.X
 - Any other dependencies
 
-### Installation
+### Installation (example)
 ```bash
 # Install dependencies
 npm install
@@ -16,7 +16,7 @@ npm install
 pip install -r requirements.txt
 ```
 
-### Running Tests
+### Running Tests (example)
 ```bash
 # Run all tests
 npm test
@@ -28,7 +28,7 @@ npm test -- --grep "validation"
 npm test -- --coverage
 ```
 
-## Issues Found
+# Issues Found (example)
 
 ### ISSUE-001: [Issue Title] - [Severity: Critical/High/Medium/Low]
 **Description**: Brief description of the issue and its impact
@@ -46,4 +46,4 @@ Application was rejected with reason "Income below minimum threshold"
 
 **Impact**: High - Valid customers are being incorrectly rejected
 
-## Assumptions & Questions
+# Assumptions & Questions
