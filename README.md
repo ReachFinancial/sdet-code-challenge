@@ -1,10 +1,39 @@
-# Senior SDET Challenge - Loan Application API Testing
+# 🎯 Your Tasks
+Your assignment is to test this loan application API. Design a test suite, identify defects, and provide additional technical documentation where needed.
 
-## 🎯 Overview
+## 1. Write Comprehensive Tests
+### Using whatever language/framework you think is most appropriate, create a test suite that covers:
 
-Your assignment is to test a loan application API. Build a robust test suite, identify defects, and provide additional technical documentation where needed.
+- **Functional Tests**: Happy path scenarios, CRUD operations
+- **Input Validation**: Required fields, data types, formats
+- **Business Logic**: Income thresholds, amount limits
+- **Error Handling**: Invalid requests, non-existent resources
 
-## 🚀 Getting Started
+## 2. Find and Document Issues
+Identify any issues or defects in the API behavior. Document your findings in `TEST_RESULTS.md`:
+
+**Include for each bug:**
+- Bug description and severity (Critical/High/Medium/Low)
+- Steps to reproduce
+- Expected vs actual behavior
+- Request/response examples
+- Business impact
+
+## 3. Provide Test Documentation
+In your `TEST_RESULTS.md`, include:
+- Test execution instructions
+- Bug report (see above)
+- Test approach and strategy
+- Framework choice justification
+- Coverage summary
+
+## 📮 Submission
+
+1. Create a new branch: `solution/[your-name]`
+2. Regularly commit your changes
+3. Attach and email your completed code challenge to lindsay.sofield@reach.com 
+
+# 🚀 Getting Started
 
 ```bash
 cd api
@@ -260,65 +289,6 @@ GET /health
    - `pending` → `approved`/`rejected`
    - `approved` → `funded`
    - No transitions from `rejected` or `funded`
-
-## 🎯 Your Tasks
-
-### 1. Write Comprehensive Tests
-#### Create a test suite that covers:
-
-- **Functional Tests**: Happy path scenarios, CRUD operations
-- **Input Validation**: Required fields, data types, formats
-- **Business Logic**: Income thresholds, amount limits
-- **Error Handling**: Invalid requests, non-existent resources
-
-#### Feel free to use whatever language, frameworks, and tools you're most comfortable with.
-
-### 2. Find and Document Issues
-Identify any issues or defects in the API behavior. Document your findings in `TEST_RESULTS.md`:
-
-**Include for each bug:**
-- Bug description and severity (Critical/High/Medium/Low)
-- Steps to reproduce
-- Expected vs actual behavior
-- Request/response examples
-- Business impact
-
-### 3. Provide Test Documentation
-In your `TEST_RESULTS.md`, include:
-- Test execution instructions
-- Bug report (see above)
-- Test approach and strategy
-- Framework choice justification
-- Coverage summary
-
-
-## 📚 Resources
-
-- Sample test data: `examples/test-data.json`
-- API request examples: `examples/sample-requests.http`
-
-
-## 📮 Submission
-
-1. Fork this repository
-2. Create a new branch: `solution/[your-name]`
-3. Commit your solution with clear history
-4. Push to your fork
-5. Create a Pull Request with:
-   - Summary of your approach
-   - Number of issues found
-   - Any assumptions made
-
-## 📋 Deliverables
-
-Please use the provided `TEST_RESULTS.md` template file to document your findings. The template includes sections for:
-- Test execution instructions
-- Issues found with detailed reproduction steps
-- Test strategy and approach
-- Framework choice justification
-- Coverage summary and metrics
-
----
 
 **Remember**: This challenge simulates real-world API testing scenarios. We value practical solutions, clear communication, and attention to detail. Show us how you would approach this in your day-to-day work as a Senior SDET.
 

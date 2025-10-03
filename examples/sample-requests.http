@@ -30,7 +30,7 @@ Content-Type: application/json
   "amount": 10000
 }
 
-### Submit Application with High Amount (test bug)
+### Submit Application with High Amount
 POST {{baseUrl}}/applications
 Content-Type: application/json
 
