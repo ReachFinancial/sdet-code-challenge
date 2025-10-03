@@ -1,0 +1,227 @@
+{
+  "validApplications": {
+    "standard": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "income": 50000,
+      "amount": 15000
+    },
+    "minimumIncome": {
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jane.smith@example.com",
+      "income": 30000,
+      "amount": 10000
+    },
+    "highIncome": {
+      "firstName": "Alice",
+      "lastName": "Johnson",
+      "email": "alice@example.com",
+      "income": 100000,
+      "amount": 25000
+    }
+  },
+
+  "invalidApplications": {
+    "missingFirstName": {
+      "lastName": "Doe",
+      "email": "test@example.com",
+      "income": 50000,
+      "amount": 10000
+    },
+    "shortFirstName": {
+      "firstName": "J",
+      "lastName": "Doe",
+      "email": "test@example.com",
+      "income": 50000,
+      "amount": 10000
+    },
+    "missingEmail": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "income": 50000,
+      "amount": 10000
+    },
+    "invalidEmail": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "not-an-email",
+      "income": 50000,
+      "amount": 10000
+    },
+    "negativeIncome": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "income": -5000,
+      "amount": 10000
+    },
+    "zeroAmount": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "income": 50000,
+      "amount": 0
+    },
+    "stringIncome": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "income": "fifty thousand",
+      "amount": 10000
+    }
+  },
+
+  "boundaryTests": {
+    "income": {
+      "belowMinimum": {
+        "firstName": "Below",
+        "lastName": "Threshold",
+        "email": "below@example.com",
+        "income": 29999,
+        "amount": 5000
+      },
+      "exactMinimum": {
+        "firstName": "Exact",
+        "lastName": "Threshold",
+        "email": "exact@example.com",
+        "income": 30000,
+        "amount": 5000
+      },
+      "aboveMinimum": {
+        "firstName": "Above",
+        "lastName": "Threshold",
+        "email": "above@example.com",
+        "income": 30001,
+        "amount": 5000
+      }
+    },
+    "amount": {
+      "belowMinimum": {
+        "firstName": "Below",
+        "lastName": "Min",
+        "email": "belowmin@example.com",
+        "income": 50000,
+        "amount": 999
+      },
+      "exactMinimum": {
+        "firstName": "Exact",
+        "lastName": "Min",
+        "email": "exactmin@example.com",
+        "income": 50000,
+        "amount": 1000
+      },
+      "exactMaximum": {
+        "firstName": "Exact",
+        "lastName": "Max",
+        "email": "exactmax@example.com",
+        "income": 100000,
+        "amount": 50000
+      },
+      "aboveMaximum": {
+        "firstName": "Above",
+        "lastName": "Max",
+        "email": "abovemax@example.com",
+        "income": 100000,
+        "amount": 50001
+      }
+    }
+  },
+
+  "edgeCases": {
+    "emailVariations": {
+      "onlyAtSymbol": {
+        "firstName": "Edge",
+        "lastName": "Case",
+        "email": "@",
+        "income": 50000,
+        "amount": 10000
+      },
+      "atAtStart": {
+        "firstName": "Edge",
+        "lastName": "Case",
+        "email": "@example.com",
+        "income": 50000,
+        "amount": 10000
+      },
+      "atAtEnd": {
+        "firstName": "Edge",
+        "lastName": "Case",
+        "email": "test@",
+        "income": 50000,
+        "amount": 10000
+      },
+      "validComplex": {
+        "firstName": "Edge",
+        "lastName": "Case",
+        "email": "test+tag@example.co.uk",
+        "income": 50000,
+        "amount": 10000
+      }
+    },
+    "nameEdgeCases": {
+      "minimumLength": {
+        "firstName": "Jo",
+        "lastName": "Do",
+        "email": "min@example.com",
+        "income": 50000,
+        "amount": 10000
+      },
+      "singleCharacter": {
+        "firstName": "A",
+        "lastName": "B",
+        "email": "single@example.com",
+        "income": 50000,
+        "amount": 10000
+      }
+    }
+  },
+
+  "bugExploitTests": {
+    "incomeThresholdBug": {
+      "firstName": "Bug",
+      "lastName": "Test",
+      "email": "bug1@example.com",
+      "income": 30000,
+      "amount": 10000
+    },
+    "largeAmountAutoApproval": {
+      "firstName": "Bug",
+      "lastName": "Test",
+      "email": "bug2@example.com",
+      "income": 20000,
+      "amount": 45000
+    },
+    "amountValidationMissing": {
+      "belowMinimum": {
+        "firstName": "Amount",
+        "lastName": "Bug",
+        "email": "amount1@example.com",
+        "income": 50000,
+        "amount": 500
+      },
+      "aboveMaximum": {
+        "firstName": "Amount",
+        "lastName": "Bug",
+        "email": "amount2@example.com",
+        "income": 50000,
+        "amount": 100000
+      }
+    }
+  },
+
+  "statusTransitions": {
+    "validTransitions": [
+      { "from": "pending", "to": "approved" },
+      { "from": "pending", "to": "rejected" },
+      { "from": "approved", "to": "funded" }
+    ],
+    "invalidTransitions": [
+      { "from": "rejected", "to": "approved" },
+      { "from": "funded", "to": "pending" },
+      { "from": "funded", "to": "rejected" },
+      { "from": "rejected", "to": "funded" }
+    ]
+  }
+}
