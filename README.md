@@ -29,9 +29,8 @@ In your `TEST_RESULTS.md`, include:
 
 ## 📮 Submission
 
-1. Create a new branch: `solution/[your-name]`
-2. Regularly commit your changes
-3. Attach and email your completed code challenge to lindsay.sofield@reach.com 
+1. Clone this repo and develop your solution locally
+2. When you're finished, attach and email your completed code challenge (your local repo) to lindsay.sofield@reach.com 
 
 # 🚀 Getting Started
 
